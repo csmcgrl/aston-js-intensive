@@ -1,0 +1,46 @@
+// Задание 1. Создание объекта counter всевозможными способами
+
+//литеральная форма
+const counter = {};
+
+//с помощью ключевого слова new через функцию-конструктор
+const counter = new Counter();
+function Counter() {
+    this.count = 0;
+}
+
+//с помощью ключевого слова new через класс
+const counter = new Counter(0, 1);
+class Counter {
+  constructor(begin, acc) {
+    this.begin = begin;
+    this.acc = acc;
+  }
+}
+
+//с помощью встроенных методов Object
+const counter = Object.create({});
+const counter = Object.assign({}, { count: 0 });
+
+// Задание 2. Копирование объекта counter всевозможными способами
+
+//поверхностное копирование с помощью Object.assign() (не подойдет, если нужна глубокая копия объекта)
+const counterCopy = Object.assign({}, counter);
+
+//поверхностное копирование с использованием оператора расширения (spread operator) (не подойдет, если нужна глубокая копия объекта)
+const counterCopy = { ...counter };
+
+//с помощью JSON.parse() и JSON.stringify() (не подойдет, если данные несериализуемы (undefined, функция, symbol))
+const counterCopy = JSON.parse(JSON.stringify(counter));
+
+//с помощью библиотеки Lodash
+import cloneDeep from 'lodash.clonedeep'
+const counterCopy = cloneDeep(counter);
+
+//с помощью метода structuredClone() (лучше проверять доступность этой функции для разных версий)
+const counterCopy = structuredClone(counter);
+
+//с помощью паттерна проектирования "Прототип"
+
+
+//с помощью создания своей собственной функции для глубокого копирования
