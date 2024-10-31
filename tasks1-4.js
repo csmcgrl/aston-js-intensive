@@ -37,10 +37,29 @@ const counterCopy = JSON.parse(JSON.stringify(counter));
 import cloneDeep from 'lodash.clonedeep'
 const counterCopy = cloneDeep(counter);
 
-//с помощью метода structuredClone() (лучше проверять доступность этой функции для разных версий)
+//с помощью метода structuredClone()
 const counterCopy = structuredClone(counter);
 
-//с помощью паттерна проектирования "Прототип"
+//с помощью паттерна проектирования "Прототип" и метода create
+const counter = {
+    count: 0,
+    getCount() {
+        return this.count;
+    }
+};
 
+const counterCopy = Object.create(counter);
 
 //с помощью создания своей собственной функции для глубокого копирования
+function deepCopy(obj) {
+    if (obj === null || typeof obj !== 'object') {
+        return obj; //если obj не объект или null, возвращаем его
+    }
+    let copy = Array.isArray(obj) ? [] : {}; //создаем новый массив или объект
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) { //проверяем, что свойство принадлежит объекту
+            copy[key] = deepCopy(obj[key]); //рекурсивно копируем свойства
+        }
+    }
+    return copy; //возвращаем новый объект или массив
+}
