@@ -63,3 +63,49 @@ function deepCopy(obj) {
     }
     return copy; //возвращаем новый объект или массив
 }
+
+// Задание 3. Создание функции makeCounter всеми описанными и возможными способами
+
+//объявляемая функция (Function Declaration)
+function makeCounter() {
+    let count = 0;
+    return function() {
+        return count++;
+    };
+}
+
+//функциональное выражение (Function Expression)
+const makeCounter = function() {
+    let count = 0;
+    return function() {
+        return count++;
+    };
+};
+
+//именованное функциональное выражение (Named Function Expression)
+const makeCounter = function counter() {
+    let count = 0;
+    return function() {
+        return count++;
+    };
+};
+
+//стрелочная функция (Arrow Function)
+const makeCounter = () => {
+    let count = 0;
+    return () => count++;
+};
+
+//генераторная функция (Generator Function)
+function* makeCounter() {
+    let count = 0;
+    while (true) {
+        yield count++;
+    }
+}
+
+//функция-конструктор (Constructor Function)
+function MakeCounter(initialValue = 0) {
+    this.count = initialValue;
+    this.increment = () => this.count++;
+}
