@@ -59,11 +59,11 @@ class PersonThree extends Person {
     }
 
     get name() {
-        return this._name; // Используем _name для хранения значения
+        return this.name; // Используем _name для хранения значения
     }
 
     set name(value) {       
-            this._name = value;
+            this.name = value;
         } 
     }
 
