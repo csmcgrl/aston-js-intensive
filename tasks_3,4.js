@@ -51,3 +51,25 @@ class Person2 extends PersonClass {
 const personInstance = new Person2('Elena', 60);
 personInstance.greet(); // Hello, my name is Elena
 personInstance.logInfo(); // Name: Elena, Age: 60
+
+//класс PersonThree с геттерами и сеттерами
+class PersonThree extends Person {
+    constructor(name, age) {
+        super(name, age); //вызов конструктора родительского класса
+    }
+
+    get name() {
+        return this._name; // Используем _name для хранения значения
+    }
+
+    set name(value) {       
+            this._name = value;
+        } 
+    }
+
+// Класс-наследник
+class Descendant extends PersonThree {
+    constructor(name, age) {
+        super(name, age); //вызов конструктора родительского класса
+    }
+}
